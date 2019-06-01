@@ -1,0 +1,42 @@
+<% if target %>
+  <% if target.is_a?(Array) %>
+    <% if target.find{|t| t && t.errors.any?} %>
+      <div class="alert alert-danger alert-dismissable alert-margin">
+        <%= content_tag(:button, raw("&times;"), type: "button", class: "close", "data-dismiss" => "alert") %>
+        <ul>
+          <% target.each do |t| %>
+            <% next unless t.present? %>
+            <% t.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% elsif target.errors.any? %>
+    <div class="alert alert-danger alert-dismissable alert-margin">
+      <%= content_tag(:button, raw("&times;"), type: "button", class: "close", "data-dismiss" => "alert") %>
+      <ul>
+        <% target.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+<% if flash[:error_messages].present? or flash[:error_message].present? %>
+  <div class="alert alert-danger alert-dismissable alert-margin">
+    <%= content_tag(:button, raw("&times;"), type: "button", class: "close", "data-dismiss" => "alert") %>
+    <ul>
+      <% if flash[:error_messages].present? %>
+        <% flash[:error_messages].each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      <% end %>
+      
+      <% if flash[:error_message].present? %>
+        <li><%= flash[:error_message] %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

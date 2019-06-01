@@ -1,0 +1,64 @@
+<script>
+  $(function() {
+    $('.left.carousel-control').focus();
+
+    var results = /\bstep_no=(\d+)/.exec(location.hash);
+    var stepNo = results ? Number(results[1]) : 1;
+    var carousel = $('#imgCarousel');
+    carousel.carousel(stepNo - 1);
+    carousel.on('slid.bs.carousel', function(o) {
+      location.hash = 'step_no=' + $(o.relatedTarget).data('step-no');
+    });
+  });
+</script>
+
+<div class="page-header">
+  <h3><%= @build_history.scenario.name %> #<%= @build_history.build_no %> (<%= I18n.t(@build_history.device, scope: 'views.scenarios.show.device.select') %>)</h3>
+</div>
+
+<%= link_to '戻る', scenario_path(@build_history.scenario), :class => 'btn btn-info' %>
+
+<% if @build_history.finished? %>
+  <div>
+    <% if @build_history.failed? %>
+      <div class="alert alert-warning" role="alert">
+        <%= t('text.build_history.results.failed') %>
+        <%= html_line_break(@build_history.error_messages.join("\n")) %>
+      </div>
+    <% elsif @build_history.error? %>
+      <div class="alert alert-danger" role="alert">
+        <%= t('text.build_history.results.error') %>
+        <%= html_line_break(@build_history.error_messages.join("\n")) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="build_history_<%= @build_history.id %>">
+  <div id="imgCarousel" class="carousel" data-ride="carousel" data-interval=false data-keyboard=true>
+    <ol class="carousel-indicators">
+      <% @build_history.steps.each do |step| %>
+        <% css_class = (step.first? ? 'active' : '') %>
+        <li class="<%= css_class %>" data-target="#imgCarousel" data-slide-to="<%= step.step_no - 1 %>"></li>
+      <% end %>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <% @build_history.steps.each do |step| %>
+        <% css_class = (step.first? ? ' active' : '') %>
+        <div class="item<%= css_class %>" data-step-no="<%= step.step_no %>">
+          <div class="step">
+            <%= render 'show_step', :step => step %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <a class="left carousel-control" href="#imgCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">前へ</span>
+    </a>
+    <a class="right carousel-control" href="#imgCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">次へ</span>
+    </a>
+  </div>
+</div>

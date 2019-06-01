@@ -1,0 +1,76 @@
+<div class="page-header">
+  <h3><%= @scenario.name %></h3>
+</div>
+
+<%= form_for([@scenario, BuildHistory.new], html: {class: 'build_history'}, remote: true) do |f| %>
+  <%= f.submit 'テストを実行', class: 'btn btn-info btn-raised',style: 'display: inline-block;' %>
+  <div class="checkbox" style= 'display: inline-block;'>
+    <% devices.each do |device, checked| %>
+      <%= label(:device, device) do %>
+        <%= check_box_tag 'devices[]', device, checked,
+                id:     "device_#{device}",
+                class:  'form-control' %>
+        <span class="checkbox-material">
+          <span class="check"></span>
+        </span>
+        <%= device_icon(device) %>
+        <%= device_title(device) %>
+      <% end %>
+    <% end %>
+  </div>
+  <hr/>
+  <%= link_to '編集', edit_scenario_path(@scenario), :class => 'btn btn-info btn-raised xs-col-1' %>
+  <%= link_to '削除', scenario_path(@scenario), :method => 'delete', :class => 'btn btn-danger btn-raised xs-col-1',
+      :data => {:confirm => "#{@scenario.original_filename} を削除します。よろしいですか？"} %>
+  <%= link_to 'ダウンロード', scenario_path(@scenario, format: :side), class: 'btn btn-default btn-raised xs-col-2', data: {turbolinks: false} %>
+  <%= link_to '戻る', project_path(@scenario.project), :class => 'btn btn-default btn-raised xs-col-1' %>
+<% end %>
+
+<div class="scenario">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table">
+        <tr class="row">
+          <th class="col-md-2">
+            <%= Scenario.human_attribute_name :scenario_no %>
+          </th>
+          <td class="col-md-10">
+            <%= @scenario.scenario_no %>
+          </td>
+        </tr>
+        <tr class="row">
+          <th class="col-md-2">
+            <%= Scenario.human_attribute_name :original_filename %>
+          </th>
+          <td class="col-md-10">
+            <%= @scenario.original_filename %>
+          </td>
+        </tr>
+        <tr class="row">
+          <th class="col-md-2">
+            <%= Scenario.human_attribute_name :base_url %>
+          </th>
+          <td class="col-md-10">
+            <%= @scenario.base_url %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="update-class-on-show-build-histories col-md-12">
+      <div class="bs-component">
+        <div id="steps">
+          <%= render 'steps/index' %>
+        </div>
+      </div>
+    </div>
+
+    <div id="build-histories">
+      <% if @scenario.build_histories.present? %>
+        <%= render partial: "build_histories/index" %>
+      <% end %>
+    </div>
+  </div>
+</div>

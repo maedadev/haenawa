@@ -1,0 +1,20 @@
+h2. <%= @build_history.scenario.project.name %>
+
+h3. <%= @build_history.scenario.name %> #<%= @build_history.build_no %>
+
+<% if @build_history.error_messages.empty? -%>
+  <pre><%= t('text.build_history.results.error') %></pre>
+<% else -%>
+  <pre><%= @build_history.error_messages.join("\n") %></pre>
+<% end -%>
+
+<%- @build_history.steps.each do |step| -%>
+<%- if @build_history.step_skipped?(step.step_no) -%>
+# <%= [step.command, step.target, step.masked_value].join(' ').strip %>
+<%- elsif @build_history.step_failed?(step.step_no) -%>
+# *<%= [step.command, step.target, step.masked_value].join(' ').strip %>*
+<pre><%= @build_history.step_message(step.step_no) %></pre>
+<%- else -%>
+# *<%= [step.command, step.target, step.masked_value].join(' ').strip %>*
+<%- end -%>
+<%- end -%>

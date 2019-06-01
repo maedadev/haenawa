@@ -1,0 +1,23 @@
+{
+  "capabilities": [
+    {
+      "browserName":  "safari",
+      "version":      "8.0",
+      "maxInstances": 1,
+      "platform":     "MAC"
+    }
+  ],
+  "configuration": {
+    "cleanUpCycle":   2000,
+    "timeout":        30000,
+    "proxy":          "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+    "url":            "http://[APPIUM_NODE_HOST]:4723/wd/hub",
+    "host":           "[APPIUM_NODE_HOST]",
+    "port":           4723,
+    "maxSession":     1,
+    "register":       true,
+    "registerCycle":  6000,
+    "hubPort":        4444,
+    "hubHost":        "[SELENIUM_HUB_HOST]"
+  }
+}

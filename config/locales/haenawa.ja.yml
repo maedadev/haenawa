@@ -1,0 +1,47 @@
+ja:
+  activerecord:
+    models:
+      project: プロジェクト
+      scenario: テストシナリオ
+      step: ステップ
+
+    attributes:
+      build_history:
+        build_sequence_code: ビルドコード
+        build_no: ビルド番号
+        branch_no: ブランチ番号
+        finished_at: 終了時刻
+        started_at: 開始時刻
+        processing_time: 処理時間
+        success: 結果
+      project:
+        name: プロジェクト名
+        default_build_sequence_code: ビルドコード
+      scenario:
+        scenario_no: 順序
+        base_url: URL
+        name: シナリオ名
+        original_filename: シナリオファイル
+      step:
+        command: コマンド
+        comment: コメント
+        step_no: No.
+        target: 対象エレメント
+        value: 値
+        processing_time: 処理時間
+      system_setting:
+        selenium_host: Seleniumホスト
+  projects:
+    show:
+      operations: 操作
+      build_count: ビルド数
+      move_scenario_up: シナリオを上へ移動する
+      move_scenario_down: シナリオを下へ移動する
+    form:
+      default_build_sequence_code: ビルドコード <span class="fas fa-question-circle" title="build_sequence_codeプレースホルダのデフォルト値。詳しくはステップ編集画面の「指定例などの説明」をご参照ください。"/>
+  steps:
+    index:
+      add: 追加
+      remove: 削除
+      edit: 編集
+      operations: 操作

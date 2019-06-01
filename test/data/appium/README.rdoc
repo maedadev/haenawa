@@ -1,0 +1,36 @@
+node_config-iphone.json::   iphone用 appium の selenium node 設定ファイルサンプル
+node_config-android.json::  android用 appium の selenium node 設定ファイルサンプル
+
+詳細は以下の各節を参照下さい。
+
+== node_config-iphone.json
+
+=== NAME
+node_config-iphone.json - iphone用 appium の selenium node 設定ファイルサンプル
+
+=== SYNOPSIS
+
+appium --nodeconfig node_config-iphone.json
+
+=== DESCRIPTION
+
+[APPIUM_NODE_HOST]::  appiumマシンのホスト名 or IPアドレス
+[SELENIUM_HUB_HOST]:: seleniumハブのホスト名 or IPアドレス
+
+== node_config-android.json
+=== NAME
+
+node_config-android.json - android用 appium の selenium node 設定ファイルサンプル
+
+=== SYNOPSIS
+
+appium --nodeconfig node_config-android.json
+
+=== DESCRIPTION
+
+[APPIUM_NODE_HOST]::  appiumマシンのホスト名 or IPアドレス
+[SELENIUM_HUB_HOST]:: seleniumハブのホスト名 or IPアドレス
+
+例: 開発環境では [SELENIUM_HUB_HOST] = localhost
+android appium サーバを同開発環境で動作させる場合は
+[APPIUM_NODE_HOST] も localhost

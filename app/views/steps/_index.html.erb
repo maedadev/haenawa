@@ -1,0 +1,56 @@
+<script>
+  new haenawa.ProgressUpdater('#steps');
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong><%= Step.model_name.human %></strong>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= Step.human_attribute_name :step_no %></th>
+          <th><%= Step.human_attribute_name :command %></th>
+          <th><%= Step.human_attribute_name :target %></th>
+          <th><%= Step.human_attribute_name :value %></th>
+          <% devices.keys.each do |device| %>
+            <th><%= device_icon(device) %></th>
+          <% end %>
+          <th><%= t('.operations') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @scenario.steps.empty? %>
+          <tr>
+            <td colspan="<%= devices.length + 5 %>"><%= progress_indicator_image(scenario_steps_url(@scenario)) %></td>
+          </tr>
+        <% else %>
+          <% @scenario.steps.each do |step| %>
+            <!-- Step#id: <%= step.id %> -->
+            <tr<%= title_attr_from_comment(step) %>>
+              <td style="word-break: break-all;"><%= step.step_no %></td>
+              <td style="word-break: break-all;"><%= step.command %></td>
+              <td style="word-break: break-all;"><%= step.target %></td>
+              <td style="word-break: break-all;"><%= step.masked_value %></td>
+              <% if @scenario.latest_build_branches.none? || @scenario.latest_build_stale? %>
+                <% devices.length.times do %>
+                  <td></td>
+                <% end %>
+              <% else %>
+                <% devices.keys.each do |device| %>
+                  <td><%= latest_build_result_icon(@scenario, device, step) %></td>
+                <% end %>
+              <% end %>
+              <td style="white-space: nowrap;">
+                <%= link_to content_tag(:span, nil, class: 'fas fa-plus', title: t('.add')), scenario_steps_path(@scenario, step_no: step.step_no + 1), method: :post, remote: true %>
+                <%= link_to content_tag(:span, nil, class: 'fas fa-minus', title: t('.remove')), step_path(step), method: :delete, remote: true %>
+                <%= link_to content_tag(:span, nil, class: 'fas fa-edit', title:  t('.edit')), edit_step_path(step) %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

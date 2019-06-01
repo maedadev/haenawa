@@ -1,0 +1,8 @@
+1:
+  id: 1
+  project_id: 1
+  name: テストシナリオ
+  file: <%= HaenawaUtils.hashed_filename(File.new('test/data/maeda.html')) %>
+  original_filename: maeda.html
+  content_type: text/html
+  scenario_no: 0

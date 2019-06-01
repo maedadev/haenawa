@@ -1,0 +1,19 @@
+<%= link_to '戻る', project_path(@scenario.project_id), :class => 'btn btn-default btn-raised' %>
+<%= render_error_messages @scenario %>
+<div class="well bs-component">
+  <%= form_for([@project, @scenario], html: {class: 'form-horizontal'}) do |f| %>
+    <%= f.hidden_field :project_id %>
+  
+    <div class="form-group">
+      <%= f.label :name, :class => 'col-md-2 control-label' %>
+      <%= f.text_field :name, :class => 'col-md-10 form-control' %>
+    </div>
+    <div class="form-group is-fileinput">
+      <%= f.label :file, :class => 'col-md-2 control-label' %>
+      <%= f.file_field :file, :class => 'col-md-10 form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit :class => 'btn btn-primary btn-raised pull-right' %>
+    </div>
+  <% end %>
+</div>

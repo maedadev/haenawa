@@ -1,0 +1,8 @@
+# language: ja
+
+機能: <%= @project.name %>
+
+  シナリオ: <%= @scenario.name %>
+  <%- @scenario.steps.each_with_index do |s| -%>
+    * シナリオ <%= @scenario.id %> <%= @scenario.name %> ステップ <%= s.step_no %>
+  <%- end -%>

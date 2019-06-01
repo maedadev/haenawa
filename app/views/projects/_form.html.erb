@@ -1,0 +1,19 @@
+<%= render_error_messages @project %>
+
+<div class="well bs-component">
+  <%= form_for @project, :html => {:class => 'form-horizontal'} do |f| %>
+    <%= f.hidden_field :lock_version %>
+
+    <div class="form-group">
+      <%= f.label :name, :class => 'col-md-2 control-label' %>
+      <%= f.text_field :name, :class => 'col-md-10 form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :default_build_sequence_code, t('.default_build_sequence_code').html_safe, :class => 'col-md-2 control-label' %>
+      <%= f.text_field :default_build_sequence_code, :class => 'col-md-10 form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit :class => 'btn btn-primary btn-raised pull-right' %>
+    </div>
+  <% end %>
+</div>

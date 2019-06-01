@@ -1,0 +1,6 @@
+<%- @build_history.steps.each do |s| -%>
+# comment: <%= s.comment.dump %>
+もし /^シナリオ <%= @scenario.id %> <%= @scenario.name %> ステップ <%= s.step_no %>$/ do
+<%= s.step_command.render -%>
+end
+<%- end -%>

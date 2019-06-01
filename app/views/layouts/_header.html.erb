@@ -1,0 +1,58 @@
+<!-- header brandname, username, logout... -->
+<nav class="header navbar navbar-default">
+  <ul class="nav navbar-nav">
+    <li>
+      <%= link_to 'Haenawa', root_path, :class => 'navbar-brand', :style => 'font-size: 2em;' %>
+    </li>
+  </ul>
+</nav>
+
+<!-- menubar responsive(collapse) -->
+<nav class="menubar navbar navbar-default"><!-- Brand and toggle get grouped for better mobile display -->
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="<%= 'active' if %w{ projects scenarios build_histories }.include?(controller_path) %>">
+          <%= link_to root_path do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true">プロジェクト</span>
+          <% end %>
+        </li>
+      </ul>
+      <% if %w{ scenarios build_histories }.include?(controller_path) %>
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to @project do %>
+            <span aria-hidden="true"><%= @project.name %></span>
+          <% end %>
+        </li>
+      </ul>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "http://oss.infoscience.co.jp/seleniumhq/docs/03_selenium_ide.html", :target => "_blank" do %>
+            <span class="glyphicon glyphicon-link" aria-hidden="true">Selenium-IDE</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to resque_path, :target => '_blank' do %>
+            <span class="glyphicon glyphicon-tasks" aria-hidden="true">Resque</span>
+          <% end %>
+        </li>
+        <li class="<%= 'active' if 'system_settings' == controller_path %>">
+          <%= link_to system_setting_path do %>
+            <span class="glyphicon glyphicon-cog" aria-hidden="true">システム設定</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

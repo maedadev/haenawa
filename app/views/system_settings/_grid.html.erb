@@ -1,0 +1,35 @@
+<% if @nodes.empty? %>
+  <div class="alert alert-danger" role="alert">
+    <span>接続しているノードはありません。</span>
+  </div>
+<% end %>
+
+<div class="list-group">
+  <% @nodes.each_with_index do |node, i| %>
+    <div class="list-group-item">
+      <div class="row-action-primary">ノード #<%= i + 1 %></div>
+      <div class="row-content">
+        <div><%= node.css('.proxyname').text %></div>
+        <div><%= node.css('.proxyid').text %></div>
+        <div>
+          <ul>
+            <% node.css('[type="browsers"] p:not(.protocol)').each do |browser| %>
+              <% if browser.css('img').present? %>
+                <% detail = browser.css('img').first['title'].strip[1..-2].split(',').map(&:strip) %>
+                <li>
+                  <% browser_name = detail.map{|d| d.split('=') }.find{|d| d[0] == 'browserName' }[1].gsub(' ', '_') %>
+                  <%= image_tag("#{browser_name}.png", :title => browser_name ) %>
+                  <%= detail %>
+                </li>
+              <% else %>
+                <% browser.css('a').present? ?
+                      browser.css('a').first.attr('title') :
+                      '??' %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

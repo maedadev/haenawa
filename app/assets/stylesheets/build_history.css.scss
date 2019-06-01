@@ -1,0 +1,43 @@
+.step_title {
+  font-weight: bold;
+  border-bottom: solid 1px blue;
+}
+
+.step_image {
+  padding: 5%;
+  background: #fafafa;
+
+  img {
+    background: #ffffff;
+    width: 90%;
+    max_width: 90%;
+
+    &.loading {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  div.alert {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+#imgCarousel {
+  .panel-body {
+    background: #009d89;
+  }
+
+  .carousel-control {
+    top: 40px;
+    width: 10%;
+  }
+}
+
+.build-history {
+  label {
+    font-weight:      normal;
+    padding-right:    1em;
+  }
+}

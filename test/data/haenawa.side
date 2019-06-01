@@ -1,0 +1,149 @@
+{
+  "id": "88a2e309-79ab-4d5a-9561-fa5ecf32e60d",
+  "version": "1.1",
+  "name": "haenawa",
+  "url": "http://localhost:3000",
+  "tests": [{
+    "id": "484ebfd8-7887-43fc-87e7-aa0b47aa54d7",
+    "name": "run",
+    "commands": [{
+      "id": "d50a604e-a9f4-42e3-b1c3-3922530b368d",
+      "comment": "",
+      "command": "open",
+      "target": "/projects",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ed737846-1b9f-494c-96a1-940196cb1a67",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "831x695",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6e292a7d-949a-44bd-9e49-af2ffeb46418",
+      "comment": "「新しいプロジェクトを追加」をクリック",
+      "command": "click",
+      "target": "linkText=新しいプロジェクトを追加",
+      "targets": [
+        ["linkText=新しいプロジェクトを追加", "linkText"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//a[contains(text(),'新しいプロジェクトを追加')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/projects/new')]", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4906ece8-2737-447f-9c08-95b46041d642",
+      "comment": "プロジェクト名のクリック",
+      "command": "click",
+      "target": "id=project_name",
+      "targets": [
+        ["id=project_name", "id"],
+        ["name=project[name]", "name"],
+        ["css=#project_name", "css"],
+        ["css=#project_name", "css:finder"],
+        ["xpath=//input[@id='project_name']", "xpath:attributes"],
+        ["xpath=//form[@id='new_project']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3064848-cba3-4876-ac85-d81eb1393343",
+      "comment": "",
+      "command": "click",
+      "target": "name=commit",
+      "targets": [
+        ["name=commit", "name"],
+        ["css=input[name=\"commit\"]", "css"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@name='commit']", "xpath:attributes"],
+        ["xpath=//form[@id='new_project']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//form/div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f8364d5-27b2-42ca-94c1-73058ae64b2d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=新しいシナリオを追加",
+      "targets": [
+        ["linkText=新しいシナリオを追加", "linkText"],
+        ["css=.btn:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'新しいシナリオを追加')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/14/scenarios/new')]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25fa3abb-b4d4-427e-8406-0ef631b5a775",
+      "comment": "",
+      "command": "click",
+      "target": "id=scenario_name",
+      "targets": [
+        ["id=scenario_name", "id"],
+        ["name=scenario[name]", "name"],
+        ["css=#scenario_name", "css"],
+        ["css=#scenario_name", "css:finder"],
+        ["xpath=//input[@id='scenario_name']", "xpath:attributes"],
+        ["xpath=//form[@id='new_scenario']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "75fb9473-6427-432d-b65b-48e3ecc2bba3",
+      "comment": "",
+      "command": "type",
+      "target": "id=scenario_name",
+      "targets": [
+        ["id=scenario_name", "id"],
+        ["name=scenario[name]", "name"],
+        ["css=#scenario_name", "css"],
+        ["css=#scenario_name", "css:finder"],
+        ["xpath=//input[@id='scenario_name']", "xpath:attributes"],
+        ["xpath=//form[@id='new_scenario']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "4a99fe99-8dc1-479b-8c88-c5d3bea0d5f3",
+      "comment": "",
+      "command": "click",
+      "target": "name=commit",
+      "targets": [
+        ["name=commit", "name"],
+        ["css=input[name=\"commit\"]", "css"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@name='commit']", "xpath:attributes"],
+        ["xpath=//form[@id='new_scenario']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2525f43f-0bdc-4497-92ed-894b46e46f71",
+      "comment": "",
+      "command": "type",
+      "target": "id=project_name",
+      "targets": [
+        ["id=project_name", "id"],
+        ["name=project[name]", "name"],
+        ["css=#project_name", "css"],
+        ["css=#project_name", "css:finder"],
+        ["xpath=//input[@id='project_name']", "xpath:attributes"],
+        ["xpath=//form[@id='new_project']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "haenawa-test"
+    }]
+  }],
+  "suites": [{
+    "id": "f6611c79-39fc-4bb4-8a42-2d6dd579493f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["484ebfd8-7887-43fc-87e7-aa0b47aa54d7"]
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}

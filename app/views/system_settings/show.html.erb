@@ -1,0 +1,36 @@
+<% if @system_setting.new_record? %>
+  <%= link_to '編集', new_system_setting_path, :class => 'btn btn-info' %>
+<% else %>
+  <%= link_to '編集', edit_system_setting_path, :class => 'btn btn-info' %>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table">
+      <tr class="row">
+        <th class="col-md-2">
+          <%= SystemSetting.human_attribute_name :selenium_host %>
+        </th>
+        <td class="col-md-7">
+          <%= @system_setting.selenium_host %>
+        </td>
+        <td class="col-md-3">
+          <%= link_to 'ノード用パッケージ', {:action => 'download_node'}, :data => {turbolinks: false} %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $.get('<%= url_for :action => 'grid' %>', {format: 'html'}, function(html) {
+      $('#selenium_grid').html(html);
+    });
+  });
+</script>
+<div>
+  <div id="selenium_grid" class="col-md-12 grid">
+    <%= image_tag('loading.gif') %>
+  </div>
+</div>

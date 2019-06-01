@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Haenawa</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  <script>
+    var bootstrapBtn = $.fn.button.noConflict();
+    $.fn.bootstrapBtn = bootstrapBtn;
+
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+
+    $(document).on('page:fetch', function() {
+      $('body').css('cursor', 'wait');
+    });
+    $(document).on('page:load page:restore', function() {
+      $('body').css('cursor', 'default');
+    });
+  </script>
+</head>
+<body>
+  <%= render 'layouts/header' %>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <%= render 'layouts/footer' %>
+</body>
+</html>

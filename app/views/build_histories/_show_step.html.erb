@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading step_title"<%= title_attr_from_comment(step) %>>
+    <%= step.step_no %>: <%= [step.command, step.target, step.masked_value].join(' ') %>
+    <div class="pull-right">
+      <%= Step.human_attribute_name :processing_time %>: <%= step.processing_time || "-" %>秒
+    </div>
+  </div>
+  <div class="panel-body step_image">
+    <% if @build_history.finished? %>
+      <% if @build_history.step_skipped?(step.step_no) %>
+        <div class="alert alert-info" role="alert">
+          <%= t('text.step.skipped') %>
+        </div>
+      <% elsif @build_history.step_failed?(step.step_no) %>
+        <div class="alert alert-danger" role="alert">
+          <%= html_line_break(@build_history.step_message(step.step_no)) %>
+        </div>
+      <% end %>
+      <% if File.exists?(@build_history.screenshot_path_for(step.step_no)) %>
+        <%= image_tag(step_path(step, format: :png), class: "img-responsive center-block") %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

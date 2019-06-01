@@ -1,0 +1,140 @@
+<script>
+  if (haenawa.ProgressUpdater.instance) {
+    // 進捗更新処理が並行しないように一個前の処理を中止する。
+    haenawa.ProgressUpdater.instance.cancel();
+  }
+  haenawa.ProgressUpdater.instance = new haenawa.ProgressUpdater('#build-histories');
+  // 最初のビルドを実行した際はビルド履歴の要素が現れるのでステップ一覧の要素の横幅を縮ませる。
+  $('.update-class-on-show-build-histories').attr('class', 'col-md-8');
+</script>
+
+<div class="col-md-4">
+  <div class="bs-component">
+    <% @build_histories.group_by(&:build_no).values.each do |branches| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>
+            <%= "#{BuildHistory.human_attribute_name :build_no} #{branches.first.build_no}" %>
+          </strong>
+          <p class="pull-right">
+          <a data-toggle="collapse" href="#collapsible<%= branches.first.build_no %>">
+            詳細表示/非表示
+          </a>
+          </p>
+        </div>
+        <div class="panel-body">
+          <% branches.each do |branch| %>
+            <%= device_icon(branch.device) %>
+          <% end %>
+          <table class="table">
+            <tr class="row">
+              <th class="col-md-5" style="padding-left:15px;">
+                <%= BuildHistory.human_attribute_name :build_sequence_code %>
+              </th>
+              <td class="col-md-7">
+                <%= BuildHistory.build_sequence_code(branches) %>
+              </td>
+            </tr>
+            <tr class="row">
+              <th class="col-md-5" style="padding-left:15px;">
+                <%= BuildHistory.human_attribute_name :started_at %>
+              </th>
+              <td class="col-md-7">
+                <%= BuildHistory.started_at_string(branches) %>
+              </td>
+            </tr>
+            <tr class="row" style="background-color: #F9F9F9;">
+              <th class="col-md-5" style="padding-left:15px;">
+                <%= BuildHistory.human_attribute_name :finished_at %>
+              </th>
+              <td class="col-md-7">
+                <%= BuildHistory.finished_at_string(branches) %>
+              </td>
+            </tr>
+            <tr class="row">
+              <th class="col-md-5" style="padding-left:15px;">
+               <%= BuildHistory.human_attribute_name :processing_time %>
+              </th>
+              <td class="col-md-7">
+                <% if BuildHistory.all_finished?(branches) %>
+                  <%= BuildHistory.processing_time(branches) %>秒
+                <% end %>
+              </td>
+            </tr>
+            <tr class="row" style="background-color: #F9F9F9;">
+              <th class="col-md-5" style="padding-left:15px;">
+                <%= BuildHistory.human_attribute_name :success %>
+              </th>
+              <td class="col-md-7">
+                <%=
+                  if BuildHistory.all_finished?(branches)
+                    BuildHistory.result_string(branches)
+                  else
+                    progress_indicator_image(scenario_build_histories_url(@scenario))
+                  end
+                %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="collapse panel-body" id="collapsible<%= branches.first.build_no %>" >
+          <% branches.each do |bh| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>
+                  <%= link_to_if bh.finished?, "#{BuildHistory.human_attribute_name :branch_no} #{bh.branch_no} #{device_title(bh.device)}", bh %>
+                  <%= device_icon(bh.device) %>
+                </strong>
+              </div>
+              <div class="panel-body">
+                <table class="table">
+                  <tr class="row">
+                    <th class="col-md-4" style="padding-left:15px;">
+                      <%= BuildHistory.human_attribute_name :started_at %>
+                    </th>
+                    <td class="col-md-8">
+                      <%= bh.started_at_string %>
+                    </td>
+                  </tr>
+                  <tr class="row" style="background-color: #F9F9F9;">
+                    <th class="col-md-4" style="padding-left:15px;">
+                      <%= BuildHistory.human_attribute_name :finished_at %>
+                    </th>
+                    <td class="col-md-8">
+                      <%= bh.finished_at_string %>
+                    </td>
+                  </tr>
+                  <tr class="row">
+                    <th class="col-md-4" style="padding-left:15px;">
+                      <%= BuildHistory.human_attribute_name :processing_time %>
+                    </th>
+                    <td class="col-md-8">
+                      <% if bh.finished_at.present? %>
+                        <%= bh.finished_at - bh.started_at %>秒
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr class="row" style="background-color: #F9F9F9;">
+                    <th class="col-md-4" style="padding-left:15px;">
+                      <%= BuildHistory.human_attribute_name :success %>
+                    </th>
+                    <td class="col-md-8">
+                      <%=
+                        if bh.finished?
+                          bh.result_string
+                        else
+                          image_tag('loading.gif', :class => 'loading')
+                        end
+                      %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @limit_count, params: {controller: 'build_histories', action: 'index', scenario_id: @scenario.id, id: nil}, remote: true %>
+  </div>
+</div>

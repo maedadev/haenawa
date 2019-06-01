@@ -1,0 +1,25 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  host: 127.0.0.1
+  port: 13306
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: haenawa
+  password: haenawa
+
+development:
+  <<: *default
+  database: haenawa_dev
+
+test: &test
+  <<: *default
+  database: haenawa_test
+
+production:
+  <<: *default
+  database: haenawa_pro
+
+cucumber:
+  <<: *test

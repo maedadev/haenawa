@@ -1,0 +1,112 @@
+/* common ----------------------------- */
+body {
+  background-color: #fff;
+}
+
+.btn {
+  margin: 10px 1px 20px 1px;
+}
+
+.page-header {
+  margin: 20px 0px;
+}
+
+/* navbar ----------------------------- */
+.navbar-nav {
+  margin: 0px;
+}
+
+.navbar {
+  
+  .glyphicon:before {
+    font-size: 16px;
+    margin-right: 3px;
+  }
+  
+  .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+    color: #eeeeee !important;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+}
+
+.header.navbar.navbar, .header.navbar-default.navbar {
+  margin-bottom: 0px;
+}
+.menubar.navbar.navbar, .menubar.navbar.navbar-default {
+  background-color: #22aa88;
+  min-height: 40px;
+  
+  .navbar-nav > li > a {
+    padding: 10px;
+    
+  }
+  .navbar-toggle {
+    padding: 4px 10px
+  }
+}
+
+ul.nav.navbar-nav.navbar-right {
+  margin-right: 0px;
+}
+
+
+/* footer ----------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  
+  p.text-muted {
+    margin: 10px 0px;
+    text-align: right;
+  }
+}
+
+/* form ----------------------------- */
+
+.form-horizontal .form-group {
+  margin-left: 0px;
+  margin-right: 0px;
+  
+  .checkbox {
+    padding-top: 7px;
+  }
+}
+
+.form-group, .form-group-default {
+  .control-label {
+    text-align: left;
+  }
+  .form-text {
+    padding: 7px 15px 0px 0px;
+  }
+}
+
+/* list ----------------------------- */
+
+.list-group {
+  .list-group-item {
+    .row-picture, .row-action-primary {
+      font-weight: bold;
+    }
+  }
+}
+
+/* table ----------------------------- */
+.table {
+  margin-bottom: 0px;
+}
+

@@ -1,0 +1,380 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        stale: 他のユーザが先に更新しています。
+      models:
+        step:
+          attributes:
+            command:
+              inclusion: はサポートされていません。
+            target:
+              invalid: の指定は正しくありません。%{attribute}の指定例をご参考ください。
+              missing: の指定は必須です。%{attribute}の指定例をご参考ください。
+              invalid_placeholder: のプレースホルダ指定は正しくありません。%{attribute}の指定例をご参考ください。
+            value:
+              invalid: の指定は正しくありません。%{attribute}の指定例をご参考ください。
+              missing: の指定は必須です。%{attribute}の指定例をご参考ください。
+              invalid_placeholder: のプレースホルダ指定は正しくありません。%{attribute}の指定例をご参考ください。
+
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "前"
+      next: "次"
+      truncate: "..."
+    scenarios:
+      show:
+        latest_build_result: 最新のビルド結果
+        device:
+          select:
+            android: Android
+            ie: IE11
+            firefox: Firefox
+            chrome: Chrome
+            headless_chrome: Headless Chrome
+            iphone6: iPhone6
+            ipad_pro: iPad Pro
+    steps:
+      edit:
+        toggle_explanation: 指定例などの説明を開く・閉じる。
+        descriptions:
+          unsupported_command: サポートしていないコマンドです。
+          command:
+            assertConfirmation: 【このコマンドはシナリオ実行時にスキップされる】特定のダイアログが表示中であることを確認する。
+            chooseCancelOnNextConfirmation: 続く操作（コマンド）の結果表示されるダイアログの「キャンセル」ボタンを押下する操作を予約する。
+            chooseOkOnNextConfirmation: 続く操作（コマンド）の結果表示されるダイアログの「OK」ボタンを押下する操作を予約する。
+            doubleClick: 【このコマンドはシナリオ実行時にスキップされる】マウスボタンでダブルクリックする。
+            mouseDown: 【このコマンドはシナリオ実行時にスキップされる】マウスボタンを押下する。
+            mouseUp: 【このコマンドはシナリオ実行時にスキップされる】マウスボタン放す。
+            mouseDownAt: 【このコマンドはシナリオ実行時にスキップされる】mousedownイベントを発火させる。
+            mouseMoveAt: 【このコマンドはシナリオ実行時にスキップされる】mousemoveイベントを発火させる。
+            mouseUpAt: 【このコマンドはシナリオ実行時にスキップされる】mouseupイベントを発火させる。
+            mouseOver: 【このコマンドはシナリオ実行時にスキップされる】mouseoverイベントを発火させる。
+            mouseOut: 【このコマンドはシナリオ実行時にスキップされる】mouseoutイベントを発火させる。
+            webdriverChooseCancelOnVisibleConfirmation: 【このコマンドはシナリオ実行時にスキップされる】ダイアログの「OK」ボタンを押下する。（chooseCancelOnNextConfirmationコマンドを参照ください。）
+            webdriverChooseOkOnVisibleConfirmation: 【このコマンドはシナリオ実行時にスキップされる】ダイアログの「キャンセル」ボタンを押下する。（chooseOkOnNextConfirmationコマンドを参照ください。）
+            check: チェックボックスにチェックを入れる。
+            uncheck: チェックボックスのチェックを外す。
+            click: マウスボタンでクリックする。
+            clickAndWait: マウスボタンでクリックする。clickと同じ。
+            open: ウェブページを開く。
+            close: ブラウザーを終了させる。
+            pause: シナリオの処理を中断させる。
+            runScript: 【上級ユーザー向け】任意のJavaScriptを実行する。
+            select: 【このコマンドはシナリオ実行時にスキップされる】プルダウン（セレクト）から選択する。（clickコマンドを代わりに使ってください。）
+            selectAndWait: 【このコマンドはシナリオ実行時にスキップされる】プルダウン（セレクト）から選択する。selectと同じ。（clickコマンドを代わりに使ってください。）
+            selectFrame: 続く操作の閲覧コンテキスト（browsing context）を特定のiframeに設定する。
+            selectWindow: 続く操作の閲覧コンテキスト（browsing context）を最も新しいwindowに設定する。
+            setWindowSize: ブラウザーウィンドの縦横の大きさを設定する。
+            type: 対象エレメントの入力欄（テキストフィールド・テキストエリア）にてテキスト入力を行う。
+            waitForElementPresent: 特定の要素がページに挿入されるまでシナリオの処理を中断する。
+            waitForPopUp: 特定のダイアログが現れるまでシナリオの処理を中断する。
+            haenawaRubyEval: 【上級ユーザー向け】任意のRubyスクリプトを実行する。
+          target:
+            selenium_target_description: &selenium_target_description 対象の要素を特定するためのセレクター。
+            unused: &unused この値は使用されない。
+            assertConfirmation: *unused
+            chooseCancelOnNextConfirmation: *unused
+            chooseOkOnNextConfirmation: *unused
+            doubleClick: *unused
+            mouseDown: *unused
+            mouseUp: *unused
+            mouseDownAt: *unused
+            mouseMoveAt: *unused
+            mouseUpAt: *unused
+            mouseOver: *unused
+            mouseOut: *unused
+            webdriverChooseCancelOnVisibleConfirmation: *unused
+            webdriverChooseOkOnVisibleConfirmation: *unused
+            check: *selenium_target_description
+            uncheck: *selenium_target_description
+            click: *selenium_target_description
+            clickAndWait: *selenium_target_description
+            open: 開くウェブページのURL。
+            close: *unused
+            pause: &waiting_time 中断する時間。ミリ秒指定。
+            runScript: 実行するJavaScriptプログラム。
+            select: *unused
+            selectAndWait: *unused
+            selectFrame: 対象のiframeを特定するための指定。
+            selectWindow: *unused
+            setWindowSize: 縦幅と横幅。ピクセル単位。
+            type: *selenium_target_description
+            waitForElementPresent: *selenium_target_description
+            waitForPopUp: ダイアログを特定するための指定。<code>blank_</code> 以外は指定不可。
+            haenawaRubyEval: *unused
+          value:
+            assertConfirmation: *unused
+            chooseCancelOnNextConfirmation: *unused
+            chooseOkOnNextConfirmation: *unused
+            doubleClick: *unused
+            mouseDown: *unused
+            mouseUp: *unused
+            mouseDownAt: *unused
+            mouseMoveAt: *unused
+            mouseUpAt: *unused
+            mouseOver: *unused
+            mouseOut: *unused
+            webdriverChooseCancelOnVisibleConfirmation: *unused
+            webdriverChooseOkOnVisibleConfirmation: *unused
+            check: *unused
+            uncheck: *unused
+            click: *unused
+            clickAndWait: *unused
+            open: *unused
+            close: *unused
+            pause: *unused
+            runScript: *unused
+            select: *unused
+            selectAndWait: *unused
+            selectFrame: *unused
+            selectWindow: *unused
+            setWindowSize: *unused
+            type: 入力する文字列。
+            waitForElementPresent: *unused
+            waitForPopUp: *waiting_time
+            haenawaRubyEval: 実行するRubyスクリプト。複数行指定可。
+        explanations:
+          unsupported_command:
+          command:
+            assertConfirmation:
+            chooseCancelOnNextConfirmation:
+            chooseOkOnNextConfirmation:
+            doubleClick:
+            mouseDown:
+            mouseUp:
+            mouseDownAt:
+            mouseMoveAt:
+            mouseUpAt:
+            mouseOver:
+            mouseOut:
+            webdriverChooseCancelOnVisibleConfirmation:
+            webdriverChooseOkOnVisibleConfirmation:
+            check:
+            uncheck:
+            click:
+            clickAndWait:
+            open:
+            close:
+            pause:
+            runScript:
+            select:
+            selectAndWait:
+            selectFrame:
+            selectWindow:
+            setWindowSize:
+            type:
+            waitForElementPresent:
+            waitForPopUp:
+            haenawaRubyEval:
+          target:
+            locator_examples: &locator_examples |
+              <p><b>指定例</b></p>
+
+              <ul>
+                <li>
+                  <em>要素属性指定:</em><br>
+                  <code>id=item_1</code><br>
+                  <code>name=item_color</code><br>
+                  ※ id、name属性指定のみ
+                </li>
+                <li>
+                  <em>CSSセレクター指定:</em><br>
+                  <code>css=.title</code><br>
+                  <code>css=div#container span:nth-child(2)</code>
+                </li>
+                <li>
+                  <em>リンク指定:</em><br>
+                  <code>link=next</code><br>
+                  <code>linkText=次へ</code><br>
+                  ※ リンクテキストか&lt;a&gt;要素のid/title属性、又は入れ子の&lt;img&gt;要素のalt属性は指定可能
+                </li>
+                <li>
+                  <em>ラベル指定:</em><br>
+                  <code>haenawaLabel=件名</code><br>
+                  ※ &lt;input&gt;か&lt;textarea&gt;又は&lt;select&gt;要素に関連付いている&lt;label&gt;要素のテキストによる指定。&lt;input&gt;要素はtypeがsubmitかimage又はhidden以外のもののみ特定できる。Selenium IDEとの互換性は無い。
+                </li>
+                <li>
+                  <em>XPath指定:</em><br>
+                  <code>xpath=//input[@placeholder="件名を入力"]</code>（属性による要素の指定）<br>
+                  <code>xpath=//option[contains(text(),"太郎")]</code>（含むテキストの部分マッチによる要素の指定）<br>
+                  <code>xpath=//option[text()="田中太郎"]</code>（含むテキストの完全マッチによる要素の指定）<br>
+                  <code>xpath=(//h1)[2]</code>（DOM全体の２番目のh1要素の指定）<br>
+                  <code>xpath=//h2[2]</code>（第二子要素であるh2要素の指定）<br>
+                  <code>xpath=//*[text()="投稿者"]/parent::div/input</code>（親要素指定）<br>
+                  <code>xpath=//*[text()="投稿者"]/following-sibling::span</code>（同じ親要素を持つ要素の指定）<br>
+                </li>
+                <li>
+                  <em>XPath短縮指定:</em><br>
+                  <code>//ul/*[1]</code><br>
+                </li>
+              </ul>
+
+              <p><b>プレースホルダ</b><p>
+
+              <p>対象エレメントの等号より右の部分はプレースホルダー指定が可能。プレースホルダはシナリオ実行時にHaenawa上のプロジェクトやシナリオの属性に置き換える。</p>
+
+              <p><em>指定可能なプレースホルダ<em></p>
+
+              <ul>
+                <li><code>project_name</code>（プロジェクト名）</li>
+                <li><code>project_id</code>（プロジェクトID）</li>
+                <li><code>scenario_name</code>（シナリオ名）</li>
+                <li><code>scenario_id</code>（シナリオID）</li>
+                <li><code>scenario_no</code>（シナリオ順序）</li>
+                <li><code>step_id</code>（ステップID）</li>
+                <li><code>step_no</code>（ステップ順序）</li>
+                <li><code>build_history_id</code>（ビルド履歴ID）</li>
+                <li><code>build_history_device</code>（ビルドデバイス）</li>
+                <li><code>build_sequence_code</code>（ビルド履歴のビルドコード。一連のシナリオの実行の中で変わらない値。API経由でシナリオを実行した場合はPOSTデータのbuild_sequence_codeパラメータの値になる。手動でシナリオを実行した場合は所属プロジェクトのビルドコードを採用する。）</li>
+              </ul>
+
+              <p><em>プレースホルダの使用例</em></p>
+
+              <ul>
+                <li><code>id=project_%{project_id}</code></li>
+                <li><code>linkText=%{scenario_name}へ</code></li>
+              </ul>
+            assertConfirmation:
+            chooseCancelOnNextConfirmation:
+            chooseOkOnNextConfirmation:
+            doubleClick:
+            mouseDown:
+            mouseUp:
+            mouseDownAt:
+            mouseMoveAt:
+            mouseUpAt:
+            mouseOver:
+            mouseOut:
+            webdriverChooseCancelOnVisibleConfirmation:
+            webdriverChooseOkOnVisibleConfirmation:
+            check: *locator_examples
+            uncheck: *locator_examples
+            click: *locator_examples
+            clickAndWait: *locator_examples
+            open: |
+              <p><b>指定例</b></p>
+
+              <ul><li><code>http://www.maeda.co.jp/company/</code></li></ul>
+            close:
+            pause: &waiting_time |
+              <p><b>指定例</b></p>
+
+              <ul><li><code>1500</code>（1.5秒）</li></ul>
+            runScript: |
+              <p><b>指定例</b></p>
+
+              <ul><li><code>$('#button').click();</code>（この例はJQueryが利用可能な環境を想定する）</li></ul>
+            select:
+            selectAndWait:
+            selectFrame: |
+              <p><b>指定例</b></p>
+
+              <ul>
+                <li><code>index=0</code>（index指定）</li>
+                <li><code>relative=parent</code>（相対指定）</li>
+                <li><code>relative=top</code>（相対指定）</li>
+              </ul>
+            selectWindow:
+            setWindowSize: |
+              <p><b>指定例</b></p>
+
+              <ul><li><code>1024x768</code></li></ul>
+            type: *locator_examples
+            waitForElementPresent: *locator_examples
+            waitForPopUp: ダイアログを特定するための指定。<code>blank_</code> 以外は指定不可。
+            haenawaRubyEval:
+          value:
+            assertConfirmation:
+            chooseCancelOnNextConfirmation:
+            chooseOkOnNextConfirmation:
+            doubleClick:
+            mouseDown:
+            mouseUp:
+            mouseDownAt:
+            mouseMoveAt:
+            mouseUpAt:
+            mouseOver:
+            mouseOut:
+            webdriverChooseCancelOnVisibleConfirmation:
+            webdriverChooseOkOnVisibleConfirmation:
+            check:
+            uncheck:
+            click:
+            clickAndWait:
+            open:
+            close:
+            pause:
+            runScript:
+            select:
+            selectAndWait:
+            selectFrame:
+            selectWindow:
+            setWindowSize:
+            type: |
+              <p><b>指定例</b></p>
+
+              <ul><li><code>田中太郎</code></li></ul>
+
+              <p><b>プレースホルダ</b><p>
+
+              <p>対象エレメントの等号より右の部分はプレースホルダー指定が可能。プレースホルダはシナリオ実行時にHaenawa上のプロジェクトやシナリオの属性に置き換える。</p>
+
+              <p><em>指定可能なプレースホルダ</em></p>
+
+              <ul>
+                <li><code>project_name</code>（プロジェクト名）</li>
+                <li><code>project_id</code>（プロジェクトID）</li>
+                <li><code>scenario_name</code>（シナリオ名）</li>
+                <li><code>scenario_id</code>（シナリオID）</li>
+                <li><code>scenario_no</code>（シナリオ順序）</li>
+                <li><code>step_id</code>（ステップID）</li>
+                <li><code>step_no</code>（ステップ順序）</li>
+                <li><code>build_history_id</code>（ビルド履歴ID）</li>
+                <li><code>build_history_device</code>（ビルドデバイス）</li>
+                <li><code>build_sequence_code</code>（ビルド履歴のビルドコード。一連のシナリオの実行の中で変わらない値。API経由でシナリオを実行した場合はPOSTデータのbuild_sequence_codeパラメータの値になる。手動でシナリオを実行した場合は所属プロジェクトのビルドコードを採用する。）</li>
+              </ul>
+
+              <p><em>プレースホルダの使用例</em></p>
+
+              <ul>
+                <li><code>プロジェクト名: %{project_name}</code></li>
+                <li><code>ビルドID: %{build_history_id}へ</code></li>
+              </ul>
+            waitForElementPresent:
+            waitForPopUp: *waiting_time
+            haenawaRubyEval: |
+              <p><b>指定例</b></p>
+
+              <ul>
+              <li><code>find('button').click</code></li>
+              <li><code>fill_in('名前', with: '田中太郎')</code></li>
+              </ul>
+
+              <p><b>プレースホルダ</b><p>
+
+              <p>Rubyのスクリプトの中ではプレースホルダが使える。プレースホルダはシナリオ実行時にHaenawa上のプロジェクトやシナリオの属性に置き換える。</p>
+
+              <p><em>指定可能なプレースホルダ<em></p>
+
+              <ul>
+                <li><code>project_name</code>（プロジェクト名）</li>
+                <li><code>project_id</code>（プロジェクトID）</li>
+                <li><code>scenario_name</code>（シナリオ名）</li>
+                <li><code>scenario_id</code>（シナリオID）</li>
+                <li><code>scenario_no</code>（シナリオ順序）</li>
+                <li><code>step_id</code>（ステップID）</li>
+                <li><code>step_no</code>（ステップ順序）</li>
+                <li><code>build_history_id</code>（ビルド履歴ID）</li>
+                <li><code>build_history_device</code>（ビルドデバイス）</li>
+                <li><code>build_sequence_code</code>（ビルド履歴のビルドコード。一連のシナリオの実行の中で変わらない値。API経由でシナリオを実行した場合はPOSTデータのbuild_sequence_codeパラメータの値になる。手動でシナリオを実行した場合は所属プロジェクトのビルドコードを採用する。）</li>
+              </ul>
+
+              <p><em>プレースホルダの使用例<em></p>
+
+              <ul>
+                <li><code>find(:link, '「%{project_name}」へ').click</code></li>
+                <li><code>first(:id, '%{build_sequence_code}').set('Project Id: %{project_id}')</code></li>
+              </ul>

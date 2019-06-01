@@ -1,0 +1,17 @@
+<%= link_to '戻る', scenario_path(@scenario), :class => 'btn btn-default btn-raised' %>
+<%= render_error_messages @scenario %>
+<div class="well bs-component">
+<%= form_for @scenario, :html => {:class => 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :name, :class => 'col-md-2 control-label' %>
+    <%= f.text_field :name, :class => 'col-md-10 form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :original_filename, :class => 'col-md-2 control-label' %>
+    <div class="col-md-10 form-text"><%= @scenario.original_filename %></div>
+  </div>
+  <div class="form-group">
+    <%= f.submit :class => 'btn btn-primary btn-raised pull-right' %>
+  </div>
+<% end %>
+</div>

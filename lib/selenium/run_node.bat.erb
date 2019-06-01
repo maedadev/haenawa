@@ -1,0 +1,6 @@
+java -jar selenium-server-standalone-2.53.0.jar ^
+  -Dwebdriver.chrome.driver=chromedriver.exe ^
+  -Dwebdriver.ie.driver=IEDriverServer.exe ^
+  -role wd ^
+  -hub http://<%= @system_setting.selenium_host %>:4444 ^
+  -port <%= @port %>

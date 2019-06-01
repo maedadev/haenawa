@@ -1,0 +1,76 @@
+<div class="page-header">
+  <h3><%= @project.name %></h3>
+</div>
+
+<%= link_to '編集', edit_project_path(@project), :class => 'btn btn-raised btn-info' %>
+<%= link_to '削除', project_path(@project), :method => 'delete', :class => 'btn btn-raised btn-danger',
+      :data => {:confirm => "#{@project.name} を削除します。よろしいですか？"} %>
+<%= link_to '一覧に戻る', projects_path, class: 'btn btn-raised' %>
+
+<div class="project">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      プロジェクト
+    </div>
+    <div class="panel-body">
+      <table class="table">
+        <tr class="row">
+          <th class="col-md-2">
+            <%= Project.human_attribute_name :default_build_sequence_code %>
+          </th>
+          <td class="col-md-10">
+            <%= @project.default_build_sequence_code %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    シナリオ
+  </div>
+  <div class="panel-body">
+    <%= link_to('新しいシナリオを追加', new_project_scenario_path(@project), class: 'btn btn-raised btn-info') %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Scenario.human_attribute_name :scenario_no %></th>
+          <th><%= Scenario.human_attribute_name :name %></th>
+          <th><%= Scenario.human_attribute_name :base_url %></th>
+          <th><%= t('.build_count') %></th>
+          <th><%= t('views.scenarios.show.latest_build_result') %></th>
+          <th><%= t('.operations') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.scenarios.each do |s| %>
+          <tr>
+            <td><%= s.scenario_no %></td>
+            <td><%= link_to s.name, s %></td>
+            <td><%= s.base_url %></td>
+            <td><%= s.build_histories.count %></td>
+            <td>
+              <%=
+                if s.build_histories.present?
+                  branches = s.build_histories.group_by(&:build_no).values.last
+                  if BuildHistory.all_finished?(branches)
+                    result = BuildHistory.result_string(branches)
+                    finished_at = BuildHistory.finished_at_string(branches)
+                    build_no = branches.first.build_no
+                    "##{build_no} #{finished_at} (#{result})"
+                  end
+                end
+              %>
+            </td>
+            <td>
+              <%= link_to content_tag(:span, nil, class: 'fas fa-arrow-down', title:  t('.move_scenario_down')), move_down_scenario_path(s), method: :patch, remote: true, style: "visibility:#{s.last? ? 'hidden' : 'visible'}" %>
+              <%= link_to content_tag(:span, nil, class: 'fas fa-arrow-up', title:  t('.move_scenario_up')),  move_up_scenario_path(s), method: :patch, remote: true, style: "visibility:#{s.first? ? 'hidden' : 'visible'}" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

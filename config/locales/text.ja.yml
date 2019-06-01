@@ -1,0 +1,11 @@
+ja:
+  text:
+    build_history:
+      results:
+        pending: 未実施
+        passed: 成功
+        failed: 失敗
+        error: エラー
+    step:
+      failed: エラー
+      skipped: 未実施

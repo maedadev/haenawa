@@ -1,0 +1,25 @@
+<%= link_to '新しいプロジェクトを追加', new_project_path, :class => 'btn btn-raised btn-info' %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Project.human_attribute_name :name %></th>
+          <th><%= Project.human_attribute_name :use_redmine %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |p| %>
+          <tr>
+            <td><%= link_to p.name, project_path(p) %></td>
+            <td><%= p.use_redmine? ? '連携する' : '連携しない' %></td>
+            <td><%= link_to p.redmine_project_url, p.redmine_project_url, :target => '_blank', :data => {:no_turbolink => true} if p.use_redmine? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @projects %>
+  </div>
+</div>

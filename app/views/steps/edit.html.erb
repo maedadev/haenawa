@@ -1,0 +1,65 @@
+<script type="text/javascript" charset="utf-8">
+  jQuery(function($) {
+    var $select = $('#step_command');
+
+    function toggleDescriptionVisibility() {
+      $('div.description').hide();
+      var command = $select.val();
+      $('#' + command + '-command-description').show();
+      $('#' + command + '-target-description').show();
+      $('#' + command + '-value-description').show();
+    }
+
+    $select.change(toggleDescriptionVisibility);
+  });
+</script>
+<%= link_to '戻る', @scenario, class: 'btn btn-default btn-raised' %>
+<%= render_error_messages @step %>
+<div class="well bs-component">
+<%= form_for @step, html: {class: 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :command, :class => 'col-md-2 control-label' %>
+    <%= f.select :command, options_for_select(@step.command_names, @step.command), {}, class: 'col-md-10 form-control' %>
+    <div class="col-md-2"></div>
+    <div class="col-md-8 help-block">
+      <% @step.command_names.each do |command| %>
+        <%= description_div(command, 'command', @step.command == command) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :target, :class => 'col-md-2 control-label' %>
+    <samp>
+      <%= f.text_field :target, class: 'col-md-10 form-control' %>
+    </samp>
+    <div class="col-md-2"></div>
+    <div class="col-md-8 help-block">
+      <% @step.command_names.each do |command| %>
+        <%= description_div(command, 'target', @step.command == command) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :value, :class => 'col-md-2 control-label' %>
+    <samp>
+      <%= f.text_area :value, class: 'col-md-10 form-control', rows: 10 %>
+    </samp>
+    <div class="col-md-2"></div>
+    <div class="col-md-8 help-block">
+      <% @step.command_names.each do |command| %>
+        <%= description_div(command, 'value', @step.command == command) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :comment, class: 'col-md-2 control-label' %>
+    <samp>
+      <%= f.text_area :comment, class: 'col-md-10 form-control', rows: 10 %>
+    </samp>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="form-group">
+    <%= f.submit :class => 'btn btn-primary btn-raised pull-right' %>
+  </div>
+<% end %>
+</div>
