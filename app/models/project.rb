@@ -1,6 +1,8 @@
 class Project < ActiveRecord::Base
   validates :name, :presence => true
 
+  include RedmineAware
+
   has_many :scenarios, -> {where(deleted: false).order(:scenario_no)}
 
   def masked_redmine_api_key
@@ -28,4 +30,7 @@ class Project < ActiveRecord::Base
     JobUtils.add_job(GenerateSupportEnvJob, :project_id => id)
   end
 
+  def create_issue(params)
+    redmine.create_issue(params)
+  end
 end

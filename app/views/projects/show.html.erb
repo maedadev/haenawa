@@ -22,6 +22,14 @@
             <%= @project.default_build_sequence_code %>
           </td>
         </tr>
+        <tr class="row">
+          <th class="col-md-2">
+            <%= Project.human_attribute_name :use_redmine %>
+          </th>
+          <td class="col-md-10">
+            <%= render 'redmine' %>
+          </td>
+        </tr>
       </table>
     </div>
   </div>

@@ -1,0 +1,21 @@
+<%= fields_for @project do |f| %>
+  <div class="panel panel-default col-md-offset-2">
+    <div class="panel-heading">
+      <%= material_check_box f, '連携する', :use_redmine %>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :redmine_host, :class => 'col-md-3 control-label' %>
+        <%= f.text_field :redmine_host, :class => 'col-md-9 form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :redmine_api_key, :class => 'col-md-3 control-label' %>
+        <%= f.text_field :redmine_api_key, :class => 'col-md-9 form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :redmine_identifier, :class => 'col-md-3 control-label' %>
+        <%= f.text_field :redmine_identifier, :class => 'col-md-9 form-control' %>
+      </div>
+    </div>
+  </div>
+<% end %>

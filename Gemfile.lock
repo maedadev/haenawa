@@ -47,6 +47,10 @@ GEM
     backports (3.15.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    bizside-redmine-client (0.0.1)
+      activesupport (>= 3.2, < 6.0.0)
+      faraday (~> 0.12)
+      nokogiri (~> 1.10)
     bootstrap-material-design (0.2.2)
       bootstrap-sass (~> 3.0)
     bootstrap-sass (3.4.1)
@@ -313,6 +317,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   acts_as_list
+  bizside-redmine-client (~> 0.0)
   bootstrap-material-design
   bootstrap-sass
   byebug
