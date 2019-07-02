@@ -13,6 +13,10 @@
       <%= f.text_field :default_build_sequence_code, :class => 'col-md-10 form-control' %>
     </div>
     <div class="form-group">
+      <%= f.label :use_redmine, :class => 'col-md-2 control-label' %>
+      <%= render 'redmine_fields' %>
+    </div>
+    <div class="form-group">
       <%= f.submit :class => 'btn btn-primary btn-raised pull-right' %>
     </div>
   <% end %>

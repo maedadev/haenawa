@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= @project.use_redmine? ? '連携する' : '連携しない' %>
+  </div>
+  <div class="panel-body">
+    <table class="table">
+      <tr class="row">
+        <th class="col-md-3">
+          <%= Project.human_attribute_name :redmine_host %>
+        </th>
+        <td class="col-md-9">
+          <%= @project.redmine_host %>
+        </td>
+      </tr>
+      <tr class="row">
+        <th class="col-md-3">
+          <%= Project.human_attribute_name :redmine_api_key %>
+        </th>
+        <td class="col-md-9">
+          <%= @project.masked_redmine_api_key %>
+        </td>
+      </tr>
+      <tr class="row">
+        <th class="col-md-3">
+          <%= Project.human_attribute_name :redmine_identifier %>
+        </th>
+        <td class="col-md-9">
+          <%= @project.redmine_identifier %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -16,6 +16,10 @@ ja:
         success: 結果
       project:
         name: プロジェクト名
+        use_redmine: Redmine
+        redmine_host: ホスト名
+        redmine_api_key: APIキー
+        redmine_identifier: プロジェクトコード
         default_build_sequence_code: ビルドコード
       scenario:
         scenario_no: 順序
@@ -45,3 +49,8 @@ ja:
       remove: 削除
       edit: 編集
       operations: 操作
+
+  errors:
+    messages:
+      invalid_redmine_configuration: Redmineに接続できません。設定を確認してください。
+      redmine_project_not_found: Redmineに %{identifier} に該当するプロジェクトはありません。
